@@ -18,4 +18,7 @@ void main(List<String> arguments) {
   mySomething = 3;
 
   final x = {'x': 5, 'y': 6};
+
+  String? myString1 = null;
+  print(myString1?.length);
 }
