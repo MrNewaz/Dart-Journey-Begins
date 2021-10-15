@@ -1,18 +1,19 @@
 void main(List<String> arguments) {
-  bool isSignedIn = true;
-  <String>[
-    'Fake text',
-    if (isSignedIn) 'Sign Out' else 'Sign in',
-  ];
+  User myUser = const User(name: 'Saif', photo: 'pic');
 
-  final x = <String>[for (int i = 0; i < 5; i++) i.toString()];
+  print({myUser.name, myUser.photo, myUser.hasName()});
+}
 
-  print(x);
+class User {
+  final String name;
+  final String photo;
 
-  final list1 = [1, 2];
-  final list2 = [3, 4];
+  const User({
+    required this.name,
+    required this.photo,
+  });
 
-  final list3 = [...list1, ...list2];
-
-  print(list3);
+  bool hasName() {
+    return name.length > 0;
+  }
 }
