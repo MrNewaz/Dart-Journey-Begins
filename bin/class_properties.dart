@@ -1,28 +1,27 @@
 void main(List<String> arguments) {
-  final user = const User(firstName: 'Saif', lastName: 'Newaz');
-  final user2 = const User(firstName: 'Saif', lastName: 'Newaz');
+  final myAdmin = Admin(firstName: '', lastName: '');
 
-  print(user == user2);
+  print(myAdmin.fullName);
 }
 
 class User {
-  final String firstName;
-  final String lastName;
+  final String _firstName;
+  final String _lastName;
 
-  const User({
-    required this.firstName,
-    required this.lastName,
-  });
+  User(this._firstName, this._lastName);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
+  String get fullName => '$_firstName $_lastName';
 
-    return other is User &&
-        other.firstName == firstName &&
-        other.lastName == lastName;
+  void signOut() {
+    print('Singing out');
   }
+}
 
-  @override
-  int get hashCode => firstName.hashCode ^ lastName.hashCode;
+class Admin extends User {
+  Admin({
+    required String firstName,
+    required String lastName,
+  }) : super(firstName, lastName);
+
+  String get fullName => 'Hmmm ${super.fullName}';
 }
