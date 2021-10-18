@@ -1,5 +1,8 @@
 Future<void> main(List<String> arguments) async {
-  createMessageStream().map((msg) => msg.toUpperCase()).listen((event) {
+  createMessageStream()
+      .map((msg) => msg.toUpperCase())
+      .where((e) => e.length > 5)
+      .listen((event) {
     print(event);
   });
 }
