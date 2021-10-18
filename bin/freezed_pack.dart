@@ -2,18 +2,26 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'freezed_pack.freezed.dart';
 
 void main(List<String> arguments) {
-  final person1 = Person(age: 25, name: 'Saif');
+  const resultSuccess = Result.success(100);
 
-  final person1updated = person1.copyWith(age: person1.age + 1);
-
-  person1.toString();
+  print(resultSuccess.maybeWhen(
+    orElse: () => '',
+    loading: () {
+      return 'LOading';
+    },
+    success: (value) {
+      return 'Yes data found $value';
+    },
+    failure: (message) {
+      return 'No data found $message';
+    },
+  ));
 }
 
 @freezed
-class Person with _$Person {
-  const Person._();
-  const factory Person({
-    required String name,
-    required int age,
-  }) = _Person;
+class Result with _$Result {
+  const Result._();
+  const factory Result.loading() = _Loading;
+  const factory Result.success(int value) = _Success;
+  const factory Result.failure(String errorMessage) = _Failure;
 }
